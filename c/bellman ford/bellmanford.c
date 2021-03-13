@@ -140,7 +140,7 @@ int main()
     author: Gacem -Jervi-
     language: C
     compiler: 6.3.0
-    github:
+    github: https://github.com/Jervi-sir/quick-code/tree/main/c/bellman%20ford
 */
 
 /*  [Bellman Ford Algorith in c]
