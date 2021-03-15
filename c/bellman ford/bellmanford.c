@@ -39,7 +39,6 @@ struct Graph *create_graph(int nb_sommet, int nb_arc)
     return graph;
 }
 
-
 //afficher le resultat final s il n existe pas de cycle negative
 void solution_finale(int dist[], int n)
 {
@@ -110,12 +109,33 @@ int main()
 
     printf("Entrez nombre de noeuds\n");
     scanf("%d", &nb_sommet);
+    while (nb_sommet < 0) //if source Negative
+    {
+        printf("[Nombre de noeuds doit etre positive]\n");
+
+        printf("Entrez nombre de noeuds\n");
+        scanf("%d", &nb_sommet);
+    }
 
     printf("Entrez nombre d'arcs\n");
     scanf("%d", &nb_arc);
+    while (nb_arc < 0) //if source Negative
+    {
+        printf("[Nombre d'arcs doit etre positive]\n");
 
-    printf("Entrez le nombre de la source\n");
+        printf("Entrez nombre d'arcs\n");
+        scanf("%d", &nb_arc);
+    }
+
+    printf("Entrez le numerau de la source\n");
     scanf("%d", &source);
+    while (source < 0) //if source Negative
+    {
+        printf("[Le numerau de la source doit etre positive]\n");
+
+        printf("Entrez le numerau de la source\n");
+        scanf("%d", &source);
+    }
 
     //creer un graph
     struct Graph *graph = create_graph(nb_sommet, nb_arc);
@@ -124,8 +144,30 @@ int main()
     for (int i = 0; i < nb_arc; i++)
     {
         printf("\nArc %d: Source, destination, poid\n", i);
+
+        /*Verivication Naive way*/
+        //Source
+        printf("Source:\t\t");
         scanf("%d", &graph->arc[i].source);
+        while (graph->arc[i].source < 0 || graph->arc[i].source > nb_sommet - 1) //if source Negative or greater
+        {
+            printf("{ Source doit etre entre [0 et %d] }\n", nb_sommet - 1);
+            printf("Source:\t\t");
+            scanf("%d", &graph->arc[i].source);
+        }
+
+        //Destination
+        printf("Destination:\t");
         scanf("%d", &graph->arc[i].destination);
+        while (graph->arc[i].destination < 0 || graph->arc[i].destination > nb_sommet - 1) //if destination Negative or greater
+        {
+            printf("{ Destination doit etre entre [0 et %d] }\n", nb_sommet - 1);
+            printf("Destination:\t");
+            scanf("%d", &graph->arc[i].destination);
+        }
+
+        //Poid
+        printf("Poid:\t\t");
         scanf("%d", &graph->arc[i].poid);
     }
 
@@ -182,4 +224,3 @@ int main()
                 . ask au fur et au mesure les Nodes(source, destination, poid)
                 . Bellmanford(graph, S)
 */
-
