@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 
 #define ANSI_COLOR_RED     "\x1b[31m"
 #define ANSI_COLOR_GREEN   "\x1b[32m"
@@ -11,9 +12,12 @@
 int main()
 {
     
-    float total;
-    float prcnt;    
-    int max;
+    float total = 300;
+    float prcnt = 80;    
+    int max = 10;
+    
+
+    /*
     printf("ur balance!\n");
     scanf("%f",&total);
     
@@ -22,7 +26,7 @@ int main()
     
     printf("Max time of trade\n");
     scanf("%d",&max);
-    
+    */
     float array[max];
     
     float start, recover, nextPrice, tempStart;
@@ -30,22 +34,28 @@ int main()
     start = total * 1.5 / 100;
     array[0] = start;
     
+    printf("next trade\t");
+    printf("gain\t\t");
+    printf("total gain\t");
+    printf("spent\n");
+
+
+
     for(int i = 1; i < max; i++)
     {
+        float spent = 0;
+        //spent 
+        for(int j = 0;j < i; j++)
+        {
+            spent += array[j];
+        }
+        
         recover = array[i - 1] / prcnt * 100;
-        array[i] = recover + (start * (i + 1));
+        array[i] = recover + spent;
     }
-    
-    printf("\n");
+
     
     float gain;
-
-        printf("next trade\t");
-        printf("gain\t\t");
-        printf("total gain\t");
-        printf("spent\n");
-
-
     for(int i = 0; i < max; i++)
     {
         float spent = 0;
@@ -55,11 +65,31 @@ int main()
             spent += array[j];
         }
         gain = array[i] * prcnt / 100;
+        
+        if(spent > gain + array[i])
+        {
+
+            break;
+        }
+        
+
         printf(ANSI_COLOR_YELLOW "%f\t" ANSI_COLOR_RESET, array[i]);
         printf("%f\t", gain);
         printf("%f\t", gain + array[i]);
         printf("%f\n", spent);
+
+
+        
     }
+
+    
+    
+    
+    
+
+
+
+    
 
     return 0;
 }
