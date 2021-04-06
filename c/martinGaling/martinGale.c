@@ -48,8 +48,8 @@ int main()
         }
         
         recover = array[i - 1] / prcnt * 100;
-        //array[i] = recover + spent;
-        array[i] = recover + ( start * (i + 1) );
+        array[i] = recover + spent;
+        //array[i] = recover + ( start * (i + 1) );
         
     }
 
