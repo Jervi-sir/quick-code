@@ -11,12 +11,10 @@
 int main()
 {
     
-    float total = 300;
-    float prcnt = 80;    
-    int max = 10;
-    
-
-    /*
+    float total;
+    float prcnt;    
+    int max;
+   
     printf("ur balance!\n");
     scanf("%f",&total);
     
@@ -25,7 +23,7 @@ int main()
     
     printf("Max time of trade\n");
     scanf("%d",&max);
-    */
+    
     float array[max];
     
     float start, recover, nextPrice, tempStart;
